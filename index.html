@@ -1,12 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site no GitHub Pages</title>
+    <title>Portfólio | Raquel Machado Souza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F8F9FA;
+            color: #333;
+            margin: 0;
+            display: flex;
+        }
+        #menu {
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            background: #E3E6F3;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #menu h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #444;
+        }
+        #menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        #menu ul li {
+            margin: 20px 0;
+        }
+        #menu ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        #menu ul li a:hover {
+            color: #007bff;
+        }
+        #content {
+            margin-left: 270px;
+            padding: 30px;
+            width: 70%;
+        }
+        section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #222;
+        }
+    </style>
 </head>
 <body>
-    <h1>Olá, mundo!</h1>
-    <p>Este é o meu site hospedado no GitHub Pages.</p>
+    <nav id="menu">
+        <h2>Raquel Machado Souza</h2>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+        <section id="sobre">
+            <h1>Sobre</h1>
+            <p>Desenvolvedora Fullstack com mais de 9 anos de experiência em desenvolvimento de software, especializada em TypeScript, NestJS, PostgreSQL e infraestrutura em cloud.</p>
+        </section>
+        <section id="experiencia">
+            <h1>Experiência</h1>
+            <p><strong>Backend Developer | Rappi</strong> (2023 - 2025)</p>
+            <p>Trabalhei na manutenção e evolução do sistema backoffice, implementando integrações de API robustas e garantindo escalabilidade.</p>
+            <p><strong>Tech Leader | BoxDelivery</strong> (2020 - 2024)</p>
+            <p>Liderança técnica e migração de monólito Laravel para microserviços, além da modernização do frontend com React e Redux.</p>
+        </section>
+        <section id="habilidades">
+            <h1>Habilidades</h1>
+            <p>TypeScript, JavaScript, PHP, React, NestJS, PostgreSQL, Docker, Kubernetes, AWS.</p>
+        </section>
+        <section id="contato">
+            <h1>Contato</h1>
+            <p>Email: <a href="mailto:raque.machado@gmail.com">raque.machado@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/seuusuario" target="_blank">github.com/seuusuario</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/seuusuario" target="_blank">linkedin.com/in/seuusuario</a></p>
+        </section>
+    </main>
 </body>
 </html>
