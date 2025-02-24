@@ -14,10 +14,35 @@
             color: #fff;
             margin: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             overflow: hidden;
+        }
+        header {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+        .menu {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.3s;
+        }
+        .menu a:hover {
+            color: #ff66b2;
         }
         .container {
             perspective: 1000px;
@@ -56,9 +81,6 @@
         .back   { transform: rotateY(180deg) translateZ(30vw); }
         .left   { transform: rotateY(-90deg) translateZ(30vw); }
         .right  { transform: rotateY(90deg) translateZ(30vw); }
-        .top    { transform: rotateX(90deg) translateZ(30vw); }
-        .bottom { transform: rotateX(-90deg) translateZ(30vw); }
-        
         .navigation {
             position: absolute;
             bottom: 20px;
@@ -81,6 +103,14 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav class="menu">
+            <a href="#" onclick="rotateCube(0, 'Y')">Rappi</a>
+            <a href="#" onclick="rotateCube(180, 'Y')">BoxDelivery</a>
+            <a href="#" onclick="rotateCube(-90, 'Y')">Outras Experiências</a>
+            <a href="#" onclick="rotateCube(90, 'Y')">Contato</a>
+        </nav>
+    </header>
     <div class="container">
         <div class="cube" id="cube">
             <div class="front"> <h2>Backend Developer | Rappi (2023 - 2025)</h2><p>Manutenção e evolução do sistema backoffice, integrações de API e escalabilidade.</p> </div>
@@ -96,7 +126,7 @@
     <script>
         let currentAngle = 0;
         function rotateCube(angle, axis) {
-            currentAngle += angle;
+            currentAngle = angle;
             document.getElementById('cube').style.transform = `rotate${axis}(${currentAngle}deg)`;
         }
     </script>
