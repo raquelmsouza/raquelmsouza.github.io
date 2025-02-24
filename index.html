@@ -14,90 +14,91 @@
             color: #fff;
             margin: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            transition: all 0.3s ease-in-out;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        #header {
-            width: 90%;
-            max-width: 1200px;
-            background: linear-gradient(to right, #ff66b2, #5500aa);
-            padding: 20px;
-            border-radius: 20px;
+        .container {
+            perspective: 1000px;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
-        }
-        #header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-        }
-        #header .info {
-            text-align: left;
-        }
-        #header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            margin: 0;
-        }
-        #header p {
-            font-size: 16px;
-            margin: 5px 0 0;
-        }
-        #timeline {
-            width: 80%;
-            max-width: 900px;
-            margin-top: 40px;
             position: relative;
         }
-        .timeline-item {
+        .cube {
+            width: 60vw;
+            height: 60vh;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+        .cube div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
             backdrop-filter: blur(8px);
-            transition: transform 0.3s ease-in-out;
-        }
-        .timeline-item:hover {
-            transform: translateY(-5px);
-        }
-        .timeline-item h2 {
-            font-family: 'Poppins', sans-serif;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
         }
-        .timeline-item p {
+        .front  { transform: translateZ(30vw); }
+        .back   { transform: rotateY(180deg) translateZ(30vw); }
+        .left   { transform: rotateY(-90deg) translateZ(30vw); }
+        .right  { transform: rotateY(90deg) translateZ(30vw); }
+        .top    { transform: rotateX(90deg) translateZ(30vw); }
+        .bottom { transform: rotateX(-90deg) translateZ(30vw); }
+        
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .navigation button {
+            padding: 10px 20px;
             font-size: 16px;
+            cursor: pointer;
+            background: #ff66b2;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .navigation button:hover {
+            background: #5500aa;
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <img src="https://via.placeholder.com/120" alt="Raquel Machado Souza">
-        <div class="info">
-            <h1>Raquel Machado Souza</h1>
-            <p>Desenvolvedora Fullstack | Especialista em TypeScript, NestJS, e Cloud</p>
+    <div class="container">
+        <div class="cube" id="cube">
+            <div class="front"> <h2>Backend Developer | Rappi (2023 - 2025)</h2><p>Manutenção e evolução do sistema backoffice, integrações de API e escalabilidade.</p> </div>
+            <div class="back"> <h2>Tech Leader | BoxDelivery (2020 - 2024)</h2><p>Liderança técnica, migração para microserviços e modernização do frontend.</p> </div>
+            <div class="left"> <h2>Desenvolvedora Fullstack | Outras Experiências</h2><p>Atuação em projetos diversos, desenvolvimento de produtos digitais inovadores.</p> </div>
+            <div class="right"> <h2>Contato</h2><p>Email: raque.machado@gmail.com<br>GitHub: github.com/seuusuario<br>LinkedIn: linkedin.com/in/seuusuario</p> </div>
         </div>
-    </header>
-    <main id="timeline">
-        <div class="timeline-item">
-            <h2>Backend Developer | Rappi (2023 - 2025)</h2>
-            <p>Trabalhei na manutenção e evolução do sistema backoffice, implementando integrações de API robustas e garantindo escalabilidade.</p>
-        </div>
-        <div class="timeline-item">
-            <h2>Tech Leader | BoxDelivery (2020 - 2024)</h2>
-            <p>Liderança técnica e migração de monólito Laravel para microserviços, além da modernização do frontend com React e Redux.</p>
-        </div>
-        <div class="timeline-item">
-            <h2>Desenvolvedora Fullstack | Outras Experiências</h2>
-            <p>Atuação em projetos diversos, contribuindo para sistemas escaláveis e desenvolvimento de produtos digitais inovadores.</p>
-        </div>
-    </main>
+    </div>
+    <div class="navigation">
+        <button onclick="rotateCube(-90, 'Y')">◀</button>
+        <button onclick="rotateCube(90, 'Y')">▶</button>
+    </div>
+    <script>
+        let currentAngle = 0;
+        function rotateCube(angle, axis) {
+            currentAngle += angle;
+            document.getElementById('cube').style.transform = `rotate${axis}(${currentAngle}deg)`;
+        }
+    </script>
 </body>
 </html>
