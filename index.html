@@ -1,134 +1,325 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Raquel Machado Souza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: url('https://images.unsplash.com/photo-1634368998864-8984df61cdda?q=80&w=2250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        header {
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-        }
-        .menu {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            transition: color 0.3s;
-        }
-        .menu a:hover {
-            color: #ff66b2;
-        }
-        .container {
-            perspective: 1000px;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .cube {
-            width: 60vw;
-            height: 60vh;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 1s ease-in-out;
-        }
-        .cube div {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 20px;
-            font-family: 'Poppins', sans-serif;
-            padding: 20px;
-        }
-        .front  { transform: translateZ(30vw); }
-        .back   { transform: rotateY(180deg) translateZ(30vw); }
-        .left   { transform: rotateY(-90deg) translateZ(30vw); }
-        .right  { transform: rotateY(90deg) translateZ(30vw); }
-        .navigation {
-            position: absolute;
-            bottom: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        .navigation button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background: #ff66b2;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .navigation button:hover {
-            background: #5500aa;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raquel Machado Souza — Backend & Full‑Stack Developer</title>
+  <meta name="description" content="Portfólio de Raquel Machado Souza — Backend & Full‑Stack Developer. NestJS, Laravel, React, PostgreSQL, Docker, Kafka, ElasticSearch." />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:title" content="Raquel Machado Souza — Backend & Full‑Stack Developer" />
+  <meta property="og:description" content="APIs escaláveis, microserviços, integrações e modernização de sistemas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://SEU_USUARIO.github.io/" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b1220;--card:#0f172a;--ink:#e2e8f0;--muted:#94a3b8;--brand:#0ea5e9;--ring:0 0 0 3px rgba(14,165,233,.35)}
+    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--ink:#0f172a;--muted:#475569;--brand:#0284c7}}
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:color-mix(in srgb, var(--bg), transparent 15%);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid color-mix(in srgb, var(--ink), transparent 85%)}
+    nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    nav .links{display:flex;gap:16px;flex-wrap:wrap}
+    .btn{display:inline-flex;gap:8px;align-items:center;background:var(--brand);color:white;padding:10px 14px;border-radius:12px;font-weight:600;border:0}
+    .btn:hover{filter:brightness(1.1)}
+    .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand)}
+    .grid{display:grid;gap:20px}
+    .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;padding:36px 0}
+    .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ink), transparent 85%);border-radius:18px;padding:20px}
+    h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:.2em 0}
+    h2{font-size:clamp(20px,2.4vw,26px);margin:0 0 12px}
+    h3{font-size:18px;margin:12px 0}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .badges{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{background:color-mix(in srgb, var(--brand), transparent 88%);color:var(--brand);padding:6px 10px;border-radius:999px;border:1px solid color-mix(in srgb, var(--brand), transparent 70%);font-size:12px;font-weight:600}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .kpi{padding:14px;border-radius:14px;background:color-mix(in srgb, var(--card), transparent 15%);border:1px dashed color-mix(in srgb, var(--ink), transparent 80%);text-align:center}
+    .kpi b{display:block;font-size:22px}
+    .xp-item{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:16px;border-radius:14px;border:1px solid color-mix(in srgb, var(--ink), transparent 85%);background:linear-gradient(180deg, color-mix(in srgb, var(--card), transparent 10%), transparent)}
+    .xp-item time{font-weight:600;color:var(--muted)}
+    .list{display:grid;gap:6px;padding-left:18px}
+    .projects{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .project .stack{margin-top:8px}
+    footer{margin:40px 0 20px;color:var(--muted);font-size:14px}
+    .lang-switch{display:flex;gap:8px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media (max-width:920px){.hero{grid-template-columns:1fr}}
+    .toast{position:fixed;right:18px;bottom:18px;padding:10px 14px;background:var(--card);color:var(--ink);border:1px solid color-mix(in srgb, var(--ink), transparent 80%);border-radius:12px;display:none}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Raquel Machado Souza",
+    "jobTitle":"Backend & Full-Stack Developer",
+    "address":{"@type":"PostalAddress","addressLocality":"São Vicente","addressRegion":"SP","addressCountry":"BR"},
+    "email":"mailto:raque.machado@gmail.com",
+    "url":"https://SEU_USUARIO.github.io",
+    "knowsAbout":["NestJS","Laravel","React","PostgreSQL","Docker","Kafka","ElasticSearch","Prisma","TypeScript","CI/CD"]
+  }
+  </script>
 </head>
 <body>
-    <header>
-        <nav class="menu">
-            <a href="#" onclick="rotateCube(0, 'Y')">Rappi</a>
-            <a href="#" onclick="rotateCube(180, 'Y')">BoxDelivery</a>
-            <a href="#" onclick="rotateCube(-90, 'Y')">Outras Experiências</a>
-            <a href="#" onclick="rotateCube(90, 'Y')">Contato</a>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="cube" id="cube">
-            <div class="front"> <h2>Backend Developer | Rappi (2023 - 2025)</h2><p>Manutenção e evolução do sistema backoffice, integrações de API e escalabilidade.</p> </div>
-            <div class="back"> <h2>Tech Leader | BoxDelivery (2020 - 2024)</h2><p>Liderança técnica, migração para microserviços e modernização do frontend.</p> </div>
-            <div class="left"> <h2>Desenvolvedora Fullstack | Outras Experiências</h2><p>Atuação em projetos diversos, desenvolvimento de produtos digitais inovadores.</p> </div>
-            <div class="right"> <h2>Contato</h2><p>Email: raque.machado@gmail.com<br>GitHub: github.com/seuusuario<br>LinkedIn: linkedin.com/in/seuusuario</p> </div>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Navegação principal">
+        <strong>Raquel <span class="muted">| Dev Backend</span></strong>
+        <div class="links">
+          <a href="#sobre">Sobre</a>
+          <a href="#skills">Skills</a>
+          <a href="#experiencia">Experiência</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+          <a class="btn outline" href="#en" title="English version">EN</a>
         </div>
+      </nav>
     </div>
-    <div class="navigation">
-        <button onclick="rotateCube(-90, 'Y')">◀</button>
-        <button onclick="rotateCube(90, 'Y')">▶</button>
-    </div>
-    <script>
-        let currentAngle = 0;
-        function rotateCube(angle, axis) {
-            currentAngle = angle;
-            document.getElementById('cube').style.transform = `rotate${axis}(${currentAngle}deg)`;
-        }
-    </script>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="sobre">
+      <div class="card">
+        <h1>Olá, eu sou a Raquel 👋</h1>
+        <p>Backend & Full‑Stack Developer especializada em <b>APIs escaláveis</b>, <b>integrações</b> e <b>modernização de sistemas</b>. Trabalho com <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b> e <b>Docker</b>, com experiência sólida em <b>microserviços</b>, <b>testes automatizados</b> e <b>CI/CD</b>.</p>
+        <div class="kpis" aria-label="Indicadores rápidos">
+          <div class="kpi"><b>10+ anos</b><span class="muted">em desenvolvimento</span></div>
+          <div class="kpi"><b>PT · EN · ES</b><span class="muted">comunicação</span></div>
+          <div class="kpi"><b>Back + Front</b><span class="muted">API, integrações, UI</span></div>
+        </div>
+        <p class="muted">São Vicente/SP · Remoto ou Híbrido · Disponível para projetos.</p>
+        <div class="badges" style="margin-top:10px">
+          <a class="btn" href="mailto:raque.machado@gmail.com">📨 Fale comigo</a>
+          <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn outline" href="https://www.linkedin.com/in/SEU_PERFIL" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <aside class="card">
+        <h2>Stack principal</h2>
+        <div class="badges" aria-label="Tecnologias">
+          <span class="badge">TypeScript</span>
+          <span class="badge">NestJS</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">Laravel</span>
+          <span class="badge">PHP</span>
+          <span class="badge">React</span>
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">Prisma</span>
+          <span class="badge">Docker</span>
+          <span class="badge">Kafka</span>
+          <span class="badge">ElasticSearch</span>
+          <span class="badge">CI/CD</span>
+          <span class="badge">RabbitMQ</span>
+          <span class="badge">WebRTC</span>
+        </div>
+        <h3 style="margin-top:16px">Outros</h3>
+        <p class="muted">DDD, testes E2E/funcionais, monitoramento, mensageria, migração de legados, SEO básico, performance de SQL, containers e cloud.</p>
+      </aside>
+    </section>
+
+    <section id="experiencia" class="grid" style="margin-top:12px">
+      <h2>Experiência selecionada</h2>
+
+      <div class="xp-item">
+        <time>jul/2023 → jan/2025</time>
+        <div>
+          <h3>Backend Developer · Rappi (São Paulo)</h3>
+          <p class="muted">Stack: NestJS, TypeScript, Prisma, PostgreSQL, Docker</p>
+          <ul class="list">
+            <li>Manutenção e evolução do backoffice <b>Rappi@Cargo</b>, com <b>APIs modulares</b> (controllers/services/pipes/DTOs).</li>
+            <li><b>Integração robusta</b> entre serviços: conciliação de pedidos, atualização de status de entrega em tempo real.</li>
+            <li><b>Testes funcionais e E2E</b> para garantir estabilidade e reduzir falhas em produção.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-item">
+        <time>ago/2020 → jun/2024</time>
+        <div>
+          <h3>Tech Leader & Full‑Stack · Box Delivery</h3>
+          <p class="muted">Stack: Laravel/PHP, Kafka, ElasticSearch, React/Redux, Vue.js, Docker</p>
+          <ul class="list">
+            <li><b>Migração</b> de monólito Laravel para <b>microserviços</b> (desempenho, disponibilidade e evolução contínua).</li>
+            <li><b>Modernização</b> do front de jQuery/Bootstrap para <b>React + Redux</b>.</li>
+            <li>Ferramenta em <b>Vue.js</b> para líderes de entregadores com dados em tempo real (↑ escoamento de entregas).</li>
+            <li>Mentoria de estagiários: revisão de código, deploy e organização do backlog.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-item">
+        <time>mar/2020 → abr/2021</time>
+        <div>
+          <h3>Full‑Stack Developer · Tele Doutor (Angola)</h3>
+          <p class="muted">Stack: Ruby on Rails, WebRTC, React, Redux, Docker</p>
+          <ul class="list">
+            <li>Plataforma de <b>telemedicina</b> com <b>WebRTC</b> e <b>reconhecimento facial</b> para segurança.</li>
+            <li>Componentização do front para <b>escalabilidade</b> e <b>reuso</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-item">
+        <time>2019 → 2020</time>
+        <div>
+          <h3>Full‑Stack · ExtraPet (E‑commerce)</h3>
+          <p class="muted">Stack: WordPress/PHP, HTML, CSS, jQuery, Docker</p>
+          <ul class="list">
+            <li>Extensão da API do WordPress: <b>customizações</b> e <b>widgets</b> conforme regras de negócio.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-item">
+        <time>2019</time>
+        <div>
+          <h3>Full‑Stack · DocSync Comunicação</h3>
+          <p class="muted">Stack: Lumen, RabbitMQ, APIs, JavaScript, Docker</p>
+          <ul class="list">
+            <li>Solução NOMA: gestão de componentes (painel + API WordPress) e <b>geração automática de A3 técnicos</b> via fila.</li>
+            <li>Landing pages (Intelbras/Krona/Coruja) e e‑mail marketing com automação.</li>
+          </ul>
+        </div>
+      </div>
+
+      <details class="card" style="margin-top:8px">
+        <summary><b>Experiências anteriores (resumo)</b></summary>
+        <ul class="list">
+          <li>Wunderman (2018): manutenção de frontend e operação de CMS para portais.</li>
+          <li>Gumini (2016‑2017): DustJS, AEM/Umbraco, APIs FuelPHP, dashboards.</li>
+          <li>Rivendel (2014‑2016): DevOps (AWS/DO), Magento, testes com Selenium/Jenkins.</li>
+          <li>MyDoctors (2013‑2014): front com jQuery/LESS, Laravel/Blade, Vagrant/AWS.</li>
+          <li>Cloud9 (2010‑2012): projetos sociais (Symfony/CakePHP, MySQL, Prototype/jQuery).</li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="projetos" style="margin-top:24px">
+      <h2>Projetos em destaque</h2>
+      <div class="grid projects">
+        <article class="card project">
+          <h3>Rappi@Cargo — Integração de APIs de pedidos</h3>
+          <p>Conciliador de pedidos com atualização de status em tempo real e arquitetura modular com NestJS/Prisma.</p>
+          <p class="stack muted">NestJS · TypeScript · PostgreSQL · Docker · Testes E2E</p>
+        </article>
+        <article class="card project">
+          <h3>Box Delivery — Microserviços + Busca</h3>
+          <p>Migração do monólito para microserviços e adoção de ElasticSearch/Kafka para performance e escalabilidade.</p>
+          <p class="stack muted">Laravel · Kafka · ElasticSearch · Docker · React/Redux</p>
+        </article>
+        <article class="card project">
+          <h3>Portal de Líderes — Tempo real para entregas</h3>
+          <p>Visibilidade ponta‑a‑ponta do escoamento de pedidos e ações rápidas por líderes de frota.</p>
+          <p class="stack muted">Laravel API · Vue.js · WebSockets/Streams</p>
+        </article>
+        <article class="card project">
+          <h3>Telemedicina — WebRTC + Segurança</h3>
+          <p>Consultas remotas, reconhecimento facial e histórico médico com foco em confiabilidade.</p>
+          <p class="stack muted">Rails · WebRTC · React · Docker</p>
+        </article>
+        <article class="card project">
+          <h3>NOMA — Impressão técnica A3 automatizada</h3>
+          <p>Pipeline com Lumen + RabbitMQ gerando desenhos técnicos a partir de dados do WordPress.</p>
+          <p class="stack muted">Lumen · RabbitMQ · WordPress API</p>
+        </article>
+        <article class="card project">
+          <h3>ExtraPet — E‑commerce WordPress</h3>
+          <p>Extensões de API e widgets para experiência personalizada e SEO.</p>
+          <p class="stack muted">WordPress · PHP · jQuery · Docker</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" style="margin-top:24px">
+      <h2>Competências técnicas</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="card">
+          <h3>Back‑end</h3>
+          <ul class="list">
+            <li>APIs REST, autenticação/autorização, validações (pipes/DTOs).</li>
+            <li>PostgreSQL/MySQL (modelagem, índices, performance).</li>
+            <li>Mensageria: Kafka, RabbitMQ.</li>
+            <li>Testes: unitários, funcionais e E2E.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Front‑end</h3>
+          <ul class="list">
+            <li>React/Redux, Vue.js, HTML5/CSS3/ES6.</li>
+            <li>Boas práticas de acessibilidade e UX pragmática.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>DevOps & Arquitetura</h3>
+          <ul class="list">
+            <li>Docker, CI/CD, observabilidade básica.</li>
+            <li>Integrações entre serviços, microserviços, migração de legados.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao" style="margin-top:24px">
+      <h2>Formação</h2>
+      <div class="card">
+        <p><b>FATEC Rubens Lara</b> — Tecnóloga em Análise e Desenvolvimento de Sistemas (2012).</p>
+        <p class="muted">Idiomas: Português (nativo), Inglês (B2), Espanhol (B2).</p>
+      </div>
+    </section>
+
+    <section id="en" style="margin-top:24px">
+      <h2>English — Short Profile</h2>
+      <div class="card">
+        <p>Backend & full‑stack developer focused on <b>scalable APIs</b>, <b>service integrations</b>, and <b>system modernization</b>. Hands‑on with <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b>, <b>Docker</b>; experienced with <b>microservices</b>, <b>messaging</b> (Kafka/RabbitMQ), and <b>automated testing</b>.</p>
+        <ul class="list">
+          <li>Rappi (2023‑2025): backoffice APIs, real‑time order flows, E2E tests.</li>
+          <li>Box Delivery (2020‑2024): microservices migration; React/Redux modernization.</li>
+          <li>Telemedicine (2020‑2021): WebRTC platform with facial recognition.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contato" style="margin-top:24px">
+      <h2>Contato</h2>
+      <div class="card">
+        <p>📧 <a href="mailto:raque.machado@gmail.com">raque.machado@gmail.com</a></p>
+        <p>🌐 <a href="https://github.com/SEU_USUARIO" target="_blank" rel="noopener">github.com/SEU_USUARIO</a></p>
+        <p>💼 <a href="https://www.linkedin.com/in/SEU_PERFIL" target="_blank" rel="noopener">linkedin.com/in/SEU_PERFIL</a></p>
+        <button class="btn" id="copyEmail" type="button">Copiar e‑mail</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Raquel Machado Souza — Feito com HTML puro. Hospede este arquivo no <b>GitHub Pages</b>.</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">E‑mail copiado ✨</div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('raque.machado@gmail.com');
+        const t = document.getElementById('toast');
+        t.style.display='block';
+        setTimeout(()=>t.style.display='none', 1500);
+      } catch(e) { alert('Não foi possível copiar.'); }
+    });
+    // Âncoras suaves
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}) }
+      })
+    })
+  </script>
 </body>
 </html>
