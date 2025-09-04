@@ -73,8 +73,10 @@
         <strong>Raquel <span class="muted">| Dev Backend</span></strong>
         <div class="links">
           <a href="#sobre">Sobre</a>
+          <a href="#perfil">Perfil</a>
           <a href="#skills">Skills</a>
           <a href="#experiencia">Experiência</a>
+          <a href="#demos">Demos</a>
           <a href="#projetos">Projetos</a>
           <a href="#contato">Contato</a>
           <a class="btn outline" href="#en" title="English version">EN</a>
@@ -121,6 +123,42 @@
         <h3 style="margin-top:16px">Outros</h3>
         <p class="muted">DDD, testes E2E/funcionais, monitoramento, mensageria, migração de legados, SEO básico, performance de SQL, containers e cloud.</p>
       </aside>
+    e="margin-top:24px">
+      <h2>Perfil</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="card">
+          <h3>Quem eu sou</h3>
+          <p>Engenheira de software com foco em <b>back‑end</b> e sólida vivência <b>full‑stack</b>. Adoro transformar legados em sistemas modernos, escaláveis e bem testados.</p>
+          <ul class="list">
+            <li><b>Força:</b> desenho e implementação de APIs, integrações e dados em tempo real.</li>
+            <li><b>Trabalho:</b> pragmática, escrita clara, testes como parte do fluxo.</li>
+            <li><b>Colaboração:</b> mentoria, revisão de PRs e melhoria contínua.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Como atuo</h3>
+          <ul class="list">
+            <li>Descoberta → design → entrega iterativa → observabilidade.</li>
+            <li>Documentação de endpoints, exemplos e <i>runbooks</i>.</li>
+            <li>Boas práticas de performance SQL e mensageria.</li>
+          </ul>
+          <div class="badges" style="margin-top:8px">
+            <span class="badge">DDD</span>
+            <span class="badge">Clean Architecture</span>
+            <span class="badge">TDD/E2E</span>
+            <span class="badge">CI/CD</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>O que busco</h3>
+          <ul class="list">
+            <li>Produtos com desafios reais de escala e integrações.</li>
+            <li>Times que valorizam autonomia, ownership e qualidade.</li>
+            <li>Ambientes com código vivo, medido e evolutivo.</li>
+          </ul>
+          <p class="muted">Disponível para remoto/híbrido · PJ/CLT · Brasil/LatAm.</p>
+        </div>
+      </div>
     </section>
 
     <section id="experiencia" class="grid" style="margin-top:12px">
@@ -200,7 +238,55 @@
       </details>
     </section>
 
-    <section id="projetos" style="margin-top:24px">
+    <section id="demos" styleBack & Front</h2>
+      <div class="card">
+        <div class="badges" role="group" aria-label="Filtros de demos">
+          <button class="btn outline" data-filter="all">Tudo</button>
+          <button class="btn outline" data-filter="backend">Back‑end</button>
+          <button class="btn outline" data-filter="frontend">Front‑end</button>
+          <button class="btn outline" data-filter="fullstack">Full‑stack</button>
+        </div>
+      </div>
+      <div class="grid projects" id="demosGrid" style="margin-top:12px">
+        <article class="card project" data-tags="backend">
+          <h3>API Catálogo de Pedidos (Demo)</h3>
+          <p>API REST em NestJS com autenticação, paginação, filtros e testes E2E. Inclui collection do Postman e docker‑compose.</p>
+          <p class="stack muted">NestJS · TypeScript · PostgreSQL · Prisma · Jest</p>
+          <p>
+            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-api-catalogo">Código</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://SEU_USUARIO.github.io/demo-api-catalogo">Live Docs</a>
+          </p>
+        </article>
+        <article class="card project" data-tags="backend">
+          <h3>Mensageria & Workers (Demo)</h3>
+          <p>Processamento assíncrono com filas, <i>retry</i> e DLQ. Observabilidade básica e métricas.</p>
+          <p class="stack muted">Laravel · Kafka/RabbitMQ · Redis · Docker</p>
+          <p>
+            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-workers">Código</a>
+          </p>
+        </article>
+        <article class="card project" data-tags="frontend">
+          <h3>Design System Lite (Demo)</h3>
+          <p>Biblioteca de componentes React com acessibilidade e temas, exemplos e Storybook.</p>
+          <p class="stack muted">React · Vite · Storybook</p>
+          <p>
+            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-ds">Código</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://SEU_USUARIO.github.io/demo-ds">Live Demo</a>
+          </p>
+        </article>
+        <article class="card project" data-tags="fullstack">
+          <h3>Orders Dashboard (Demo)</h3>
+          <p>Dashboard tempo‑real consumindo API de pedidos, filtros e gráficos.</p>
+          <p class="stack muted">React · NestJS · WebSockets · Postgres</p>
+          <p>
+            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-orders">Código</a>
+          </p>
+        </article>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3>Como rodar os demos</h3>
+        <pre class="muted" style="white-space:pre-wrap"># Clonar
+ git clone https:// style="margin-top:24px">
       <h2>Projetos em destaque</h2>
       <div class="grid projects">
         <article class="card project">
@@ -306,7 +392,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('copyEmail').addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText('raque.machado@gmail.com');
+        await nwriteText('raque.machado@gmail.com');
         const t = document.getElementById('toast');
         t.style.display='block';
         setTimeout(()=>t.style.display='none', 1500);
