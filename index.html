@@ -100,6 +100,7 @@
           <a class="btn" href="mailto:raque.machado@gmail.com">📨 Fale comigo</a>
           <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank" rel="noopener">GitHub</a>
           <a class="btn outline" href="https://www.linkedin.com/in/SEU_PERFIL" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn outline" href="./Raquel_Machado_CV.pdf" target="_blank" rel="noopener">Baixar CV</a>
         </div>
       </div>
       <aside class="card">
@@ -123,7 +124,9 @@
         <h3 style="margin-top:16px">Outros</h3>
         <p class="muted">DDD, testes E2E/funcionais, monitoramento, mensageria, migração de legados, SEO básico, performance de SQL, containers e cloud.</p>
       </aside>
-    e="margin-top:24px">
+    </section>
+
+    <section id="perfil" style="margin-top:24px">
       <h2>Perfil</h2>
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
         <div class="card">
@@ -238,7 +241,8 @@
       </details>
     </section>
 
-    <section id="demos" styleBack & Front</h2>
+    <section id="demos" style="margin-top:24px">
+      <h2>Demos • Back & Front</h2>
       <div class="card">
         <div class="badges" role="group" aria-label="Filtros de demos">
           <button class="btn outline" data-filter="all">Tudo</button>
@@ -286,7 +290,18 @@
       <div class="card" style="margin-top:12px">
         <h3>Como rodar os demos</h3>
         <pre class="muted" style="white-space:pre-wrap"># Clonar
- git clone https:// style="margin-top:24px">
+ git clone https://github.com/SEU_USUARIO/demo-api-catalogo && cd demo-api-catalogo
+ # Subir deps
+ docker compose up -d
+ # Dev
+ npm i && npm run start:dev
+ # Testes
+ npm run test:e2e
+</pre>
+      </div>
+    </section>
+
+    <section id="projetos" style="margin-top:24px">
       <h2>Projetos em destaque</h2>
       <div class="grid projects">
         <article class="card project">
@@ -390,9 +405,9 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('copyEmail').addEventListener('click', async () => {
+    document.getElementById('copyEmail')?.addEventListener('click', async () => {
       try {
-        await nwriteText('raque.machado@gmail.com');
+        await navigator.clipboard.writeText('raque.machado@gmail.com');
         const t = document.getElementById('toast');
         t.style.display='block';
         setTimeout(()=>t.style.display='none', 1500);
@@ -406,6 +421,21 @@
         if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}) }
       })
     })
+    // Filtros para DEMOS
+    (function(){
+      const grid = document.getElementById('demosGrid');
+      if(!grid) return;
+      document.querySelectorAll('[data-filter]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const f = btn.getAttribute('data-filter');
+          grid.querySelectorAll('.project').forEach(card=>{
+            const tags = card.getAttribute('data-tags')||'';
+            const show = f==='all' || tags.includes(f);
+            card.style.display = show ? '' : 'none';
+          });
+        })
+      })
+    })();
   </script>
 </body>
 </html>
