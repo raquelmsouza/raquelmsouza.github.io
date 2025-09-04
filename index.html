@@ -13,35 +13,53 @@
     :root{
       --ink:#e2e8f0; --ink-strong:#f8fafc;
       --bg:#080d1a; --card:#0b1226; --muted:#94a3b8;
-      /* Paleta inspirada no anexo */
+      /* Paleta (gradiente violeta→azul) + acento rubi como no mock */
       --violet:#977DFF; --blue:#0033FF; --indigo:#0600AB; --navy:#00033D; --pink:#FFCCF2;
-      --brand:#5b7bff; /* intermediária para legibilidade */
+      --accent:#ff3b5c; /* rubi para CTAs/barras */
+      --brand:#5b7bff;
     }
     @media (prefers-color-scheme: light){
-      :root{--bg:#f6f8ff; --card:#ffffff; --ink:#0f172a; --muted:#475569; --brand:#3b5bff}
+      :root{--bg:#f6f8ff; --card:#ffffff; --ink:#0f172a; --muted:#475569; --brand:#3b5bff; --accent:#e11d48}
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(0,0,0,.35), transparent), linear-gradient(90deg, var(--violet), var(--blue));}
+    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.35);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
     nav{display:flex;justify-content:space-between;align-items:center}
     nav .links{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{background:linear-gradient(90deg, var(--violet), var(--blue));color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;border:0}
-    .btn.outline{background:transparent;border:1px solid var(--blue);color:var(--ink)}
+    .btn{background:linear-gradient(90deg, var(--accent), #ff6a88);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;border:0}
+    .btn.outline{background:transparent;border:1px solid var(--accent);color:var(--ink)}
     h1{font-size:clamp(28px,4vw,40px)}
     h2{margin-top:32px;font-size:clamp(20px,2.4vw,26px)}
     h3{margin-top:16px;font-size:18px}
     .grid{display:grid;gap:20px}
     .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));padding:20px;border-radius:18px;border:1px solid rgba(151,125,255,.22);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .hero{background:linear-gradient(135deg, var(--violet), var(--blue) 45%, var(--indigo));padding:28px;border-radius:22px;margin-top:18px;color:var(--ink-strong)}
+    .hero{position:relative;overflow:hidden;border-radius:22px;margin-top:18px;color:var(--ink-strong);display:grid;grid-template-columns:1.15fr .85fr}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, var(--violet), var(--blue) 45%, var(--indigo));opacity:.85}
+    .hero .hero-content{position:relative;padding:28px}
+    .hero .hero-photo{position:relative}
+    .hero .hero-photo .frame{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+    .hero .hero-photo img{display:block;width:100%;height:100%;object-fit:cover}
+
     .badges{display:flex;flex-wrap:wrap;gap:8px}
     .badge{padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(151,125,255,.18), rgba(0,51,255,.18));color:#dfe6ff;font-weight:700;font-size:12px;border:1px solid rgba(151,125,255,.35)}
-    .xp-item{padding:16px;border:1px solid rgba(151,125,255,.25);border-radius:14px}
-    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-    .project{padding:16px;border-radius:14px;border:1px solid rgba(151,125,255,.25)}
-    footer{margin:40px 0 20px;text-align:center;color:var(--muted);font-size:14px}
+
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .about .photo{border-radius:18px;overflow:hidden;border:1px solid rgba(151,125,255,.25)}
+
+    .skills-tags{display:flex;flex-wrap:wrap;gap:8px}
+    .bar{height:10px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}
+    .bar > span{display:block;height:100%;background:linear-gradient(90deg, var(--accent), #ff6a88)}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .stat{background:var(--card);border:1px solid rgba(151,125,255,.2);border-radius:14px;padding:16px;text-align:center}
+    .stat b{display:block;font-size:22px}
+
+    .gadgets{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+    .gadget{position:relative;padding:18px;border-radius:16px;border:1px solid rgba(151,125,255,.25);background:linear-gradient(160deg, rgba(0,51,255,.12), rgba(151,125,255,.08))}
+    .gadget h4{margin:0 0 6px}
   </style>
 </head>
 <body>
@@ -63,35 +81,70 @@
 
   <main class="wrap">
     <section id="sobre" class="hero">
-      <div class="grid" style="grid-template-columns:1.2fr 1fr;align-items:center">
-        <div>
-          <h1>Raquel Machado Souza</h1>
-          <p><b>Backend & Full‑Stack Developer</b> focada em <b>APIs escaláveis</b>, <b>integrações</b> e <b>modernização de sistemas</b>. Experiência com <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b>, <b>Docker</b>, <b>Kafka</b> e <b>ElasticSearch</b>.</p>
-          <ul style="margin:10px 0 0 18px">
-            <li>Arquitetura modular · testes E2E · CI/CD</li>
-            <li>Microserviços e mensageria (Kafka/RabbitMQ)</li>
-            <li>Foco em performance e observabilidade pragmática</li>
-          </ul>
-          <div class="badges" style="margin-top:12px">
-            <a class="btn" href="mailto:raque.machado@gmail.com">📨 Contato</a>
-            <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank">GitHub</a>
-            <a class="btn outline" href="https://linkedin.com/in/SEU_PERFIL" target="_blank">LinkedIn</a>
-          </div>
-          <p style="margin-top:8px;opacity:.9;font-size:14px">São Vicente/SP · Remoto/Híbrido</p>
+      <div class="hero-content">
+        <h1>Raquel Machado Souza</h1>
+        <p><b>Backend & Full‑Stack Developer</b> — APIs escaláveis, integrações e modernização de sistemas. Experiência com <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b>, <b>Docker</b>, <b>Kafka</b> e <b>ElasticSearch</b>.</p>
+        <p style="opacity:.9;font-size:14px">São Vicente/SP · Remoto/Híbrido</p>
+        <div class="badges" style="margin-top:10px">
+          <a class="btn" href="mailto:raque.machado@gmail.com">📨 Contato</a>
+          <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank">GitHub</a>
+          <a class="btn outline" href="https://linkedin.com/in/SEU_PERFIL" target="_blank">LinkedIn</a>
         </div>
-        <aside class="card">
-          <h3 style="margin-top:0">Stack principal</h3>
-          <div class="badges">
-            <span class="badge">TypeScript</span><span class="badge">NestJS</span><span class="badge">Laravel</span><span class="badge">React</span><span class="badge">PostgreSQL</span><span class="badge">Prisma</span><span class="badge">Docker</span><span class="badge">Kafka</span><span class="badge">ElasticSearch</span>
-          </div>
-        </aside>
+      </div>
+      <div class="hero-photo">
+        <div class="frame"><img src="assets/img/raquel.jpg" alt="Foto de Raquel" /></div>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="badges">
-        <span class="badge">NestJS</span><span class="badge">TypeScript</span><span class="badge">PostgreSQL</span><span class="badge">Docker</span><span class="badge">Laravel</span><span class="badge">React</span><span class="badge">Kafka</span><span class="badge">ElasticSearch</span>
+    <section id="about" class="card">
+      <h2>Sobre mim</h2>
+      <div class="about">
+        <div class="photo"><img src="assets/img/raquel.jpg" alt="Retrato" style="width:100%;height:auto;display:block"></div>
+        <div>
+          <p>Engenheira de software com foco em <b>back‑end</b> e sólida vivência <b>full‑stack</b>. Curto transformar legados em sistemas modernos, escaláveis e bem testados. Trabalho com descoberta → design → entrega iterativa → observabilidade.</p>
+          <ul style="margin-left:18px">
+            <li>Arquitetura modular: controllers/services, DTOs/pipes/validações.</li>
+            <li>Mensageria e dados em tempo real: Kafka/RabbitMQ, WebSockets.</li>
+            <li>Qualidade: testes unit/funcionais/E2E, CI/CD.</li>
+          </ul>
+          <div class="skills-tags" style="margin-top:8px">
+            <span class="badge">TypeScript</span><span class="badge">NestJS</span><span class="badge">Prisma</span><span class="badge">PostgreSQL</span><span class="badge">Laravel</span><span class="badge">React</span><span class="badge">Docker</span><span class="badge">ElasticSearch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="card">
+      <h2>Skill Area</h2>
+      <p class="muted">Um resumo pragmático do que mais utilizo no dia a dia.</p>
+      <div class="grid" style="grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <h3>Back‑end</h3>
+          <div class="bar" aria-label="NestJS 90%" title="NestJS 90%"><span style="width:90%"></span></div>
+          <p class="muted" style="margin:6px 0 14px">NestJS / Node</p>
+          <div class="bar" aria-label="Laravel 85%"><span style="width:85%"></span></div>
+          <p class="muted" style="margin:6px 0 14px">Laravel / PHP</p>
+          <div class="bar" aria-label="PostgreSQL 80%"><span style="width:80%"></span></div>
+          <p class="muted" style="margin:6px 0 0">PostgreSQL / Prisma</p>
+        </div>
+        <div>
+          <h3>Front‑end & DevOps</h3>
+          <div class="bar" aria-label="React 75%"><span style="width:75%"></span></div>
+          <p class="muted" style="margin:6px 0 14px">React / Redux</p>
+          <div class="bar" aria-label="Docker 80%"><span style="width:80%"></span></div>
+          <p class="muted" style="margin:6px 0 14px">Docker / CI‑CD</p>
+          <div class="bar" aria-label="Kafka 70%"><span style="width:70%"></span></div>
+          <p class="muted" style="margin:6px 0 0">Kafka / RabbitMQ</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="stats">
+        <div class="stat"><b>10+ anos</b><span class="muted">de experiência</span></div>
+        <div class="stat"><b>20%+</b><span class="muted">↑ escoamento de entregas</span></div>
+        <div class="stat"><b>E2E</b><span class="muted">testes automatizados</span></div>
+        <div class="stat"><b>PT·EN·ES</b><span class="muted">comunicação</span></div>
       </div>
     </section>
 
@@ -129,13 +182,32 @@
       </div>
     </section>
 
-    <section id="demo">
-      <h2>Demonstrações</h2>
-      <p>Aqui você pode visualizar <b>demonstrações reais de projetos back‑end e front‑end</b> que desenvolvi. (Sugestão: incluir links para repositórios públicos ou deploys no Vercel/Render com APIs e frontends interativos).</p>
-      <ul>
-        <li><a href="https://github.com/SEU_USUARIO/projeto-backend">API de Pedidos (NestJS)</a></li>
-        <li><a href="https://github.com/SEU_USUARIO/projeto-frontend">Dashboard em React</a></li>
-      </ul>
+    <section id="demo" class="card">
+      <h2>Gadgets</h2>
+      <p class="muted">Atalhos rápidos para o que importa.</p>
+      <div class="gadgets">
+        <div class="gadget">
+          <h4>Back‑end Demo — API de Pedidos</h4>
+          <p>NestJS + Prisma + Postgres com testes E2E e docker‑compose.</p>
+          <p><a class="btn" href="https://github.com/SEU_USUARIO/demo-api-catalogo" target="_blank">Código</a>
+             <a class="btn outline" href="https://SEU_USUARIO.github.io/demo-api-catalogo" target="_blank">Live Docs</a></p>
+        </div>
+        <div class="gadget">
+          <h4>Front‑end Demo — Dashboard</h4>
+          <p>React + WebSockets consumindo API de pedidos, filtros e gráficos.</p>
+          <p><a class="btn" href="https://github.com/SEU_USUARIO/demo-orders" target="_blank">Código</a></p>
+        </div>
+        <div class="gadget">
+          <h4>API Docs</h4>
+          <p>Swagger UI / Redoc hospedado no GitHub Pages.</p>
+          <p><a class="btn outline" href="https://SEU_USUARIO.github.io/api-docs" target="_blank">Abrir</a></p>
+        </div>
+        <div class="gadget">
+          <h4>CV (PDF)</h4>
+          <p>Versão atualizada do currículo para download.</p>
+          <p><a class="btn" href="./Raquel_Machado_CV.pdf" target="_blank">Baixar</a></p>
+        </div>
+      </div>
     </section>
 
     <section id="contato">
