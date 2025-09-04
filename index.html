@@ -6,436 +6,149 @@
   <title>Raquel Machado Souza — Backend & Full‑Stack Developer</title>
   <meta name="description" content="Portfólio de Raquel Machado Souza — Backend & Full‑Stack Developer. NestJS, Laravel, React, PostgreSQL, Docker, Kafka, ElasticSearch." />
   <meta name="color-scheme" content="light dark" />
-  <meta property="og:title" content="Raquel Machado Souza — Backend & Full‑Stack Developer" />
-  <meta property="og:description" content="APIs escaláveis, microserviços, integrações e modernização de sistemas." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://SEU_USUARIO.github.io/" />
-  <meta name="theme-color" content="#0ea5e9" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b1220;--card:#0f172a;--ink:#e2e8f0;--muted:#94a3b8;--brand:#0ea5e9;--ring:0 0 0 3px rgba(14,165,233,.35)}
-    @media (prefers-color-scheme: light){:root{--bg:#f8fafc;--card:#ffffff;--ink:#0f172a;--muted:#475569;--brand:#0284c7}}
+    :root{
+      --ink:#e2e8f0; --ink-strong:#f8fafc;
+      --bg:#080d1a; --card:#0b1226; --muted:#94a3b8;
+      /* Paleta inspirada no anexo */
+      --violet:#977DFF; --blue:#0033FF; --indigo:#0600AB; --navy:#00033D; --pink:#FFCCF2;
+      --brand:#5b7bff; /* intermediária para legibilidade */
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f6f8ff; --card:#ffffff; --ink:#0f172a; --muted:#475569; --brand:#3b5bff}
+    }
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:color-mix(in srgb, var(--bg), transparent 15%);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid color-mix(in srgb, var(--ink), transparent 85%)}
-    nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(0,0,0,.35), transparent), linear-gradient(90deg, var(--violet), var(--blue));}
+    nav{display:flex;justify-content:space-between;align-items:center}
     nav .links{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{display:inline-flex;gap:8px;align-items:center;background:var(--brand);color:white;padding:10px 14px;border-radius:12px;font-weight:600;border:0}
-    .btn:hover{filter:brightness(1.1)}
-    .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand)}
+    .btn{background:linear-gradient(90deg, var(--violet), var(--blue));color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;border:0}
+    .btn.outline{background:transparent;border:1px solid var(--blue);color:var(--ink)}
+    h1{font-size:clamp(28px,4vw,40px)}
+    h2{margin-top:32px;font-size:clamp(20px,2.4vw,26px)}
+    h3{margin-top:16px;font-size:18px}
     .grid{display:grid;gap:20px}
-    .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;padding:36px 0}
-    .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ink), transparent 85%);border-radius:18px;padding:20px}
-    h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:.2em 0}
-    h2{font-size:clamp(20px,2.4vw,26px);margin:0 0 12px}
-    h3{font-size:18px;margin:12px 0}
-    p{margin:8px 0}
-    .muted{color:var(--muted)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));padding:20px;border-radius:18px;border:1px solid rgba(151,125,255,.22);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .hero{background:linear-gradient(135deg, var(--violet), var(--blue) 45%, var(--indigo));padding:28px;border-radius:22px;margin-top:18px;color:var(--ink-strong)}
     .badges{display:flex;flex-wrap:wrap;gap:8px}
-    .badge{background:color-mix(in srgb, var(--brand), transparent 88%);color:var(--brand);padding:6px 10px;border-radius:999px;border:1px solid color-mix(in srgb, var(--brand), transparent 70%);font-size:12px;font-weight:600}
-    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .kpi{padding:14px;border-radius:14px;background:color-mix(in srgb, var(--card), transparent 15%);border:1px dashed color-mix(in srgb, var(--ink), transparent 80%);text-align:center}
-    .kpi b{display:block;font-size:22px}
-    .xp-item{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:16px;border-radius:14px;border:1px solid color-mix(in srgb, var(--ink), transparent 85%);background:linear-gradient(180deg, color-mix(in srgb, var(--card), transparent 10%), transparent)}
-    .xp-item time{font-weight:600;color:var(--muted)}
-    .list{display:grid;gap:6px;padding-left:18px}
-    .projects{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-    .project .stack{margin-top:8px}
-    footer{margin:40px 0 20px;color:var(--muted);font-size:14px}
-    .lang-switch{display:flex;gap:8px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media (max-width:920px){.hero{grid-template-columns:1fr}}
-    .toast{position:fixed;right:18px;bottom:18px;padding:10px 14px;background:var(--card);color:var(--ink);border:1px solid color-mix(in srgb, var(--ink), transparent 80%);border-radius:12px;display:none}
+    .badge{padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(151,125,255,.18), rgba(0,51,255,.18));color:#dfe6ff;font-weight:700;font-size:12px;border:1px solid rgba(151,125,255,.35)}
+    .xp-item{padding:16px;border:1px solid rgba(151,125,255,.25);border-radius:14px}
+    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .project{padding:16px;border-radius:14px;border:1px solid rgba(151,125,255,.25)}
+    footer{margin:40px 0 20px;text-align:center;color:var(--muted);font-size:14px}
   </style>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Raquel Machado Souza",
-    "jobTitle":"Backend & Full-Stack Developer",
-    "address":{"@type":"PostalAddress","addressLocality":"São Vicente","addressRegion":"SP","addressCountry":"BR"},
-    "email":"mailto:raque.machado@gmail.com",
-    "url":"https://SEU_USUARIO.github.io",
-    "knowsAbout":["NestJS","Laravel","React","PostgreSQL","Docker","Kafka","ElasticSearch","Prisma","TypeScript","CI/CD"]
-  }
-  </script>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <nav aria-label="Navegação principal">
-        <strong>Raquel <span class="muted">| Dev Backend</span></strong>
+      <nav>
+        <strong>Raquel <span class="muted">· Backend Dev</span></strong>
         <div class="links">
           <a href="#sobre">Sobre</a>
-          <a href="#perfil">Perfil</a>
           <a href="#skills">Skills</a>
           <a href="#experiencia">Experiência</a>
-          <a href="#demos">Demos</a>
           <a href="#projetos">Projetos</a>
+          <a href="#demo">Demonstrações</a>
           <a href="#contato">Contato</a>
-          <a class="btn outline" href="#en" title="English version">EN</a>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="hero" id="sobre">
-      <div class="card">
-        <h1>Olá, eu sou a Raquel 👋</h1>
-        <p>Backend & Full‑Stack Developer especializada em <b>APIs escaláveis</b>, <b>integrações</b> e <b>modernização de sistemas</b>. Trabalho com <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b> e <b>Docker</b>, com experiência sólida em <b>microserviços</b>, <b>testes automatizados</b> e <b>CI/CD</b>.</p>
-        <div class="kpis" aria-label="Indicadores rápidos">
-          <div class="kpi"><b>10+ anos</b><span class="muted">em desenvolvimento</span></div>
-          <div class="kpi"><b>PT · EN · ES</b><span class="muted">comunicação</span></div>
-          <div class="kpi"><b>Back + Front</b><span class="muted">API, integrações, UI</span></div>
-        </div>
-        <p class="muted">São Vicente/SP · Remoto ou Híbrido · Disponível para projetos.</p>
-        <div class="badges" style="margin-top:10px">
-          <a class="btn" href="mailto:raque.machado@gmail.com">📨 Fale comigo</a>
-          <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn outline" href="https://www.linkedin.com/in/SEU_PERFIL" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn outline" href="./Raquel_Machado_CV.pdf" target="_blank" rel="noopener">Baixar CV</a>
-        </div>
-      </div>
-      <aside class="card">
-        <h2>Stack principal</h2>
-        <div class="badges" aria-label="Tecnologias">
-          <span class="badge">TypeScript</span>
-          <span class="badge">NestJS</span>
-          <span class="badge">Node.js</span>
-          <span class="badge">Laravel</span>
-          <span class="badge">PHP</span>
-          <span class="badge">React</span>
-          <span class="badge">PostgreSQL</span>
-          <span class="badge">Prisma</span>
-          <span class="badge">Docker</span>
-          <span class="badge">Kafka</span>
-          <span class="badge">ElasticSearch</span>
-          <span class="badge">CI/CD</span>
-          <span class="badge">RabbitMQ</span>
-          <span class="badge">WebRTC</span>
-        </div>
-        <h3 style="margin-top:16px">Outros</h3>
-        <p class="muted">DDD, testes E2E/funcionais, monitoramento, mensageria, migração de legados, SEO básico, performance de SQL, containers e cloud.</p>
-      </aside>
-    </section>
-
-    <section id="perfil" style="margin-top:24px">
-      <h2>Perfil</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
-        <div class="card">
-          <h3>Quem eu sou</h3>
-          <p>Engenheira de software com foco em <b>back‑end</b> e sólida vivência <b>full‑stack</b>. Adoro transformar legados em sistemas modernos, escaláveis e bem testados.</p>
-          <ul class="list">
-            <li><b>Força:</b> desenho e implementação de APIs, integrações e dados em tempo real.</li>
-            <li><b>Trabalho:</b> pragmática, escrita clara, testes como parte do fluxo.</li>
-            <li><b>Colaboração:</b> mentoria, revisão de PRs e melhoria contínua.</li>
+    <section id="sobre" class="hero">
+      <div class="grid" style="grid-template-columns:1.2fr 1fr;align-items:center">
+        <div>
+          <h1>Raquel Machado Souza</h1>
+          <p><b>Backend & Full‑Stack Developer</b> focada em <b>APIs escaláveis</b>, <b>integrações</b> e <b>modernização de sistemas</b>. Experiência com <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b>, <b>Docker</b>, <b>Kafka</b> e <b>ElasticSearch</b>.</p>
+          <ul style="margin:10px 0 0 18px">
+            <li>Arquitetura modular · testes E2E · CI/CD</li>
+            <li>Microserviços e mensageria (Kafka/RabbitMQ)</li>
+            <li>Foco em performance e observabilidade pragmática</li>
           </ul>
-        </div>
-        <div class="card">
-          <h3>Como atuo</h3>
-          <ul class="list">
-            <li>Descoberta → design → entrega iterativa → observabilidade.</li>
-            <li>Documentação de endpoints, exemplos e <i>runbooks</i>.</li>
-            <li>Boas práticas de performance SQL e mensageria.</li>
-          </ul>
-          <div class="badges" style="margin-top:8px">
-            <span class="badge">DDD</span>
-            <span class="badge">Clean Architecture</span>
-            <span class="badge">TDD/E2E</span>
-            <span class="badge">CI/CD</span>
+          <div class="badges" style="margin-top:12px">
+            <a class="btn" href="mailto:raque.machado@gmail.com">📨 Contato</a>
+            <a class="btn outline" href="https://github.com/SEU_USUARIO" target="_blank">GitHub</a>
+            <a class="btn outline" href="https://linkedin.com/in/SEU_PERFIL" target="_blank">LinkedIn</a>
           </div>
+          <p style="margin-top:8px;opacity:.9;font-size:14px">São Vicente/SP · Remoto/Híbrido</p>
         </div>
-        <div class="card">
-          <h3>O que busco</h3>
-          <ul class="list">
-            <li>Produtos com desafios reais de escala e integrações.</li>
-            <li>Times que valorizam autonomia, ownership e qualidade.</li>
-            <li>Ambientes com código vivo, medido e evolutivo.</li>
-          </ul>
-          <p class="muted">Disponível para remoto/híbrido · PJ/CLT · Brasil/LatAm.</p>
-        </div>
+        <aside class="card">
+          <h3 style="margin-top:0">Stack principal</h3>
+          <div class="badges">
+            <span class="badge">TypeScript</span><span class="badge">NestJS</span><span class="badge">Laravel</span><span class="badge">React</span><span class="badge">PostgreSQL</span><span class="badge">Prisma</span><span class="badge">Docker</span><span class="badge">Kafka</span><span class="badge">ElasticSearch</span>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section id="experiencia" class="grid" style="margin-top:12px">
-      <h2>Experiência selecionada</h2>
-
-      <div class="xp-item">
-        <time>jul/2023 → jan/2025</time>
-        <div>
-          <h3>Backend Developer · Rappi (São Paulo)</h3>
-          <p class="muted">Stack: NestJS, TypeScript, Prisma, PostgreSQL, Docker</p>
-          <ul class="list">
-            <li>Manutenção e evolução do backoffice <b>Rappi@Cargo</b>, com <b>APIs modulares</b> (controllers/services/pipes/DTOs).</li>
-            <li><b>Integração robusta</b> entre serviços: conciliação de pedidos, atualização de status de entrega em tempo real.</li>
-            <li><b>Testes funcionais e E2E</b> para garantir estabilidade e reduzir falhas em produção.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp-item">
-        <time>ago/2020 → jun/2024</time>
-        <div>
-          <h3>Tech Leader & Full‑Stack · Box Delivery</h3>
-          <p class="muted">Stack: Laravel/PHP, Kafka, ElasticSearch, React/Redux, Vue.js, Docker</p>
-          <ul class="list">
-            <li><b>Migração</b> de monólito Laravel para <b>microserviços</b> (desempenho, disponibilidade e evolução contínua).</li>
-            <li><b>Modernização</b> do front de jQuery/Bootstrap para <b>React + Redux</b>.</li>
-            <li>Ferramenta em <b>Vue.js</b> para líderes de entregadores com dados em tempo real (↑ escoamento de entregas).</li>
-            <li>Mentoria de estagiários: revisão de código, deploy e organização do backlog.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp-item">
-        <time>mar/2020 → abr/2021</time>
-        <div>
-          <h3>Full‑Stack Developer · Tele Doutor (Angola)</h3>
-          <p class="muted">Stack: Ruby on Rails, WebRTC, React, Redux, Docker</p>
-          <ul class="list">
-            <li>Plataforma de <b>telemedicina</b> com <b>WebRTC</b> e <b>reconhecimento facial</b> para segurança.</li>
-            <li>Componentização do front para <b>escalabilidade</b> e <b>reuso</b>.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp-item">
-        <time>2019 → 2020</time>
-        <div>
-          <h3>Full‑Stack · ExtraPet (E‑commerce)</h3>
-          <p class="muted">Stack: WordPress/PHP, HTML, CSS, jQuery, Docker</p>
-          <ul class="list">
-            <li>Extensão da API do WordPress: <b>customizações</b> e <b>widgets</b> conforme regras de negócio.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp-item">
-        <time>2019</time>
-        <div>
-          <h3>Full‑Stack · DocSync Comunicação</h3>
-          <p class="muted">Stack: Lumen, RabbitMQ, APIs, JavaScript, Docker</p>
-          <ul class="list">
-            <li>Solução NOMA: gestão de componentes (painel + API WordPress) e <b>geração automática de A3 técnicos</b> via fila.</li>
-            <li>Landing pages (Intelbras/Krona/Coruja) e e‑mail marketing com automação.</li>
-          </ul>
-        </div>
-      </div>
-
-      <details class="card" style="margin-top:8px">
-        <summary><b>Experiências anteriores (resumo)</b></summary>
-        <ul class="list">
-          <li>Wunderman (2018): manutenção de frontend e operação de CMS para portais.</li>
-          <li>Gumini (2016‑2017): DustJS, AEM/Umbraco, APIs FuelPHP, dashboards.</li>
-          <li>Rivendel (2014‑2016): DevOps (AWS/DO), Magento, testes com Selenium/Jenkins.</li>
-          <li>MyDoctors (2013‑2014): front com jQuery/LESS, Laravel/Blade, Vagrant/AWS.</li>
-          <li>Cloud9 (2010‑2012): projetos sociais (Symfony/CakePHP, MySQL, Prototype/jQuery).</li>
-        </ul>
-      </details>
-    </section>
-
-    <section id="demos" style="margin-top:24px">
-      <h2>Demos • Back & Front</h2>
-      <div class="card">
-        <div class="badges" role="group" aria-label="Filtros de demos">
-          <button class="btn outline" data-filter="all">Tudo</button>
-          <button class="btn outline" data-filter="backend">Back‑end</button>
-          <button class="btn outline" data-filter="frontend">Front‑end</button>
-          <button class="btn outline" data-filter="fullstack">Full‑stack</button>
-        </div>
-      </div>
-      <div class="grid projects" id="demosGrid" style="margin-top:12px">
-        <article class="card project" data-tags="backend">
-          <h3>API Catálogo de Pedidos (Demo)</h3>
-          <p>API REST em NestJS com autenticação, paginação, filtros e testes E2E. Inclui collection do Postman e docker‑compose.</p>
-          <p class="stack muted">NestJS · TypeScript · PostgreSQL · Prisma · Jest</p>
-          <p>
-            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-api-catalogo">Código</a>
-            <a class="btn" target="_blank" rel="noopener" href="https://SEU_USUARIO.github.io/demo-api-catalogo">Live Docs</a>
-          </p>
-        </article>
-        <article class="card project" data-tags="backend">
-          <h3>Mensageria & Workers (Demo)</h3>
-          <p>Processamento assíncrono com filas, <i>retry</i> e DLQ. Observabilidade básica e métricas.</p>
-          <p class="stack muted">Laravel · Kafka/RabbitMQ · Redis · Docker</p>
-          <p>
-            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-workers">Código</a>
-          </p>
-        </article>
-        <article class="card project" data-tags="frontend">
-          <h3>Design System Lite (Demo)</h3>
-          <p>Biblioteca de componentes React com acessibilidade e temas, exemplos e Storybook.</p>
-          <p class="stack muted">React · Vite · Storybook</p>
-          <p>
-            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-ds">Código</a>
-            <a class="btn" target="_blank" rel="noopener" href="https://SEU_USUARIO.github.io/demo-ds">Live Demo</a>
-          </p>
-        </article>
-        <article class="card project" data-tags="fullstack">
-          <h3>Orders Dashboard (Demo)</h3>
-          <p>Dashboard tempo‑real consumindo API de pedidos, filtros e gráficos.</p>
-          <p class="stack muted">React · NestJS · WebSockets · Postgres</p>
-          <p>
-            <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/SEU_USUARIO/demo-orders">Código</a>
-          </p>
-        </article>
-      </div>
-      <div class="card" style="margin-top:12px">
-        <h3>Como rodar os demos</h3>
-        <pre class="muted" style="white-space:pre-wrap"># Clonar
- git clone https://github.com/SEU_USUARIO/demo-api-catalogo && cd demo-api-catalogo
- # Subir deps
- docker compose up -d
- # Dev
- npm i && npm run start:dev
- # Testes
- npm run test:e2e
-</pre>
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="badges">
+        <span class="badge">NestJS</span><span class="badge">TypeScript</span><span class="badge">PostgreSQL</span><span class="badge">Docker</span><span class="badge">Laravel</span><span class="badge">React</span><span class="badge">Kafka</span><span class="badge">ElasticSearch</span>
       </div>
     </section>
 
-    <section id="projetos" style="margin-top:24px">
+    <section id="experiencia">
+      <h2>Experiência</h2>
+      <div class="xp-item">
+        <h3>Rappi (2023-2025) · Backend Developer</h3>
+        <p>Manutenção e evolução do backoffice da Rappi@Cargo com NestJS, Prisma e PostgreSQL. Criação de integrações robustas entre serviços e testes E2E para estabilidade do sistema.</p>
+      </div>
+      <div class="xp-item">
+        <h3>Box Delivery (2020-2024) · Tech Leader & FullStack</h3>
+        <p>Migração de monólito Laravel para microserviços, modernização do frontend para React/Redux e criação de ferramenta em Vue.js para monitoramento de entregas.</p>
+      </div>
+      <div class="xp-item">
+        <h3>Tele Doutor Angola (2020-2021) · FullStack</h3>
+        <p>Plataforma de telemedicina em Ruby on Rails e WebRTC com reconhecimento facial para autenticação.</p>
+      </div>
+    </section>
+
+    <section id="projetos">
       <h2>Projetos em destaque</h2>
-      <div class="grid projects">
-        <article class="card project">
-          <h3>Rappi@Cargo — Integração de APIs de pedidos</h3>
-          <p>Conciliador de pedidos com atualização de status em tempo real e arquitetura modular com NestJS/Prisma.</p>
-          <p class="stack muted">NestJS · TypeScript · PostgreSQL · Docker · Testes E2E</p>
-        </article>
-        <article class="card project">
-          <h3>Box Delivery — Microserviços + Busca</h3>
-          <p>Migração do monólito para microserviços e adoção de ElasticSearch/Kafka para performance e escalabilidade.</p>
-          <p class="stack muted">Laravel · Kafka · ElasticSearch · Docker · React/Redux</p>
-        </article>
-        <article class="card project">
-          <h3>Portal de Líderes — Tempo real para entregas</h3>
-          <p>Visibilidade ponta‑a‑ponta do escoamento de pedidos e ações rápidas por líderes de frota.</p>
-          <p class="stack muted">Laravel API · Vue.js · WebSockets/Streams</p>
-        </article>
-        <article class="card project">
-          <h3>Telemedicina — WebRTC + Segurança</h3>
-          <p>Consultas remotas, reconhecimento facial e histórico médico com foco em confiabilidade.</p>
-          <p class="stack muted">Rails · WebRTC · React · Docker</p>
-        </article>
-        <article class="card project">
-          <h3>NOMA — Impressão técnica A3 automatizada</h3>
-          <p>Pipeline com Lumen + RabbitMQ gerando desenhos técnicos a partir de dados do WordPress.</p>
-          <p class="stack muted">Lumen · RabbitMQ · WordPress API</p>
-        </article>
-        <article class="card project">
-          <h3>ExtraPet — E‑commerce WordPress</h3>
-          <p>Extensões de API e widgets para experiência personalizada e SEO.</p>
-          <p class="stack muted">WordPress · PHP · jQuery · Docker</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" style="margin-top:24px">
-      <h2>Competências técnicas</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
-        <div class="card">
-          <h3>Back‑end</h3>
-          <ul class="list">
-            <li>APIs REST, autenticação/autorização, validações (pipes/DTOs).</li>
-            <li>PostgreSQL/MySQL (modelagem, índices, performance).</li>
-            <li>Mensageria: Kafka, RabbitMQ.</li>
-            <li>Testes: unitários, funcionais e E2E.</li>
-          </ul>
+      <div class="projects">
+        <div class="project">
+          <h3>Rappi@Cargo</h3>
+          <p>Integração entre APIs de pedidos com atualização em tempo real.</p>
         </div>
-        <div class="card">
-          <h3>Front‑end</h3>
-          <ul class="list">
-            <li>React/Redux, Vue.js, HTML5/CSS3/ES6.</li>
-            <li>Boas práticas de acessibilidade e UX pragmática.</li>
-          </ul>
+        <div class="project">
+          <h3>Portal de Líderes</h3>
+          <p>Ferramenta Vue.js em tempo real para líderes de frota na Box Delivery.</p>
         </div>
-        <div class="card">
-          <h3>DevOps & Arquitetura</h3>
-          <ul class="list">
-            <li>Docker, CI/CD, observabilidade básica.</li>
-            <li>Integrações entre serviços, microserviços, migração de legados.</li>
-          </ul>
+        <div class="project">
+          <h3>Telemedicina</h3>
+          <p>Consultas online seguras com Rails + WebRTC.</p>
         </div>
       </div>
     </section>
 
-    <section id="formacao" style="margin-top:24px">
-      <h2>Formação</h2>
-      <div class="card">
-        <p><b>FATEC Rubens Lara</b> — Tecnóloga em Análise e Desenvolvimento de Sistemas (2012).</p>
-        <p class="muted">Idiomas: Português (nativo), Inglês (B2), Espanhol (B2).</p>
-      </div>
+    <section id="demo">
+      <h2>Demonstrações</h2>
+      <p>Aqui você pode visualizar <b>demonstrações reais de projetos back‑end e front‑end</b> que desenvolvi. (Sugestão: incluir links para repositórios públicos ou deploys no Vercel/Render com APIs e frontends interativos).</p>
+      <ul>
+        <li><a href="https://github.com/SEU_USUARIO/projeto-backend">API de Pedidos (NestJS)</a></li>
+        <li><a href="https://github.com/SEU_USUARIO/projeto-frontend">Dashboard em React</a></li>
+      </ul>
     </section>
 
-    <section id="en" style="margin-top:24px">
-      <h2>English — Short Profile</h2>
-      <div class="card">
-        <p>Backend & full‑stack developer focused on <b>scalable APIs</b>, <b>service integrations</b>, and <b>system modernization</b>. Hands‑on with <b>NestJS</b>, <b>Laravel</b>, <b>React</b>, <b>PostgreSQL</b>, <b>Docker</b>; experienced with <b>microservices</b>, <b>messaging</b> (Kafka/RabbitMQ), and <b>automated testing</b>.</p>
-        <ul class="list">
-          <li>Rappi (2023‑2025): backoffice APIs, real‑time order flows, E2E tests.</li>
-          <li>Box Delivery (2020‑2024): microservices migration; React/Redux modernization.</li>
-          <li>Telemedicine (2020‑2021): WebRTC platform with facial recognition.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contato" style="margin-top:24px">
+    <section id="contato">
       <h2>Contato</h2>
-      <div class="card">
-        <p>📧 <a href="mailto:raque.machado@gmail.com">raque.machado@gmail.com</a></p>
-        <p>🌐 <a href="https://github.com/SEU_USUARIO" target="_blank" rel="noopener">github.com/SEU_USUARIO</a></p>
-        <p>💼 <a href="https://www.linkedin.com/in/SEU_PERFIL" target="_blank" rel="noopener">linkedin.com/in/SEU_PERFIL</a></p>
-        <button class="btn" id="copyEmail" type="button">Copiar e‑mail</button>
-      </div>
+      <p>📧 <a href="mailto:raque.machado@gmail.com">raque.machado@gmail.com</a></p>
+      <p>🌐 <a href="https://github.com/SEU_USUARIO" target="_blank">GitHub</a> · <a href="https://linkedin.com/in/SEU_PERFIL" target="_blank">LinkedIn</a></p>
     </section>
-
-    <footer>
-      <p>© <span id="year"></span> Raquel Machado Souza — Feito com HTML puro. Hospede este arquivo no <b>GitHub Pages</b>.</p>
-    </footer>
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">E‑mail copiado ✨</div>
+  <footer>
+    <p>© <span id="year"></span> Raquel Machado Souza</p>
+  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('copyEmail')?.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('raque.machado@gmail.com');
-        const t = document.getElementById('toast');
-        t.style.display='block';
-        setTimeout(()=>t.style.display='none', 1500);
-      } catch(e) { alert('Não foi possível copiar.'); }
-    });
-    // Âncoras suaves
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href').slice(1);
-        const el=document.getElementById(id);
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}) }
-      })
-    })
-    // Filtros para DEMOS
-    (function(){
-      const grid = document.getElementById('demosGrid');
-      if(!grid) return;
-      document.querySelectorAll('[data-filter]').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          const f = btn.getAttribute('data-filter');
-          grid.querySelectorAll('.project').forEach(card=>{
-            const tags = card.getAttribute('data-tags')||'';
-            const show = f==='all' || tags.includes(f);
-            card.style.display = show ? '' : 'none';
-          });
-        })
-      })
-    })();
-  </script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
 </body>
 </html>
